@@ -1,0 +1,217 @@
+/* Heather Cleary — site styles */
+
+:root {
+  --wall: #eceef0;      /* pale cool gallery wall, keeps the blues of the work true */
+  --ink: #1d2533;       /* deep blue-ink for text */
+  --quiet: #687080;     /* secondary text: dimensions, medium, years */
+  --rule: #d3d7dd;      /* hairlines */
+  --dark: #12161e;      /* lightbox */
+  --gutter: clamp(16px, 4vw, 56px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--wall);
+  color: var(--ink);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--quiet); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Header */
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 32px;
+  padding: 28px var(--gutter) 0;
+}
+
+.site-name {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.site-name a { text-decoration: none; }
+
+.site-nav ul {
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.site-nav a { text-decoration: none; color: var(--quiet); }
+.site-nav a:hover,
+.site-nav a[aria-current="page"] { color: var(--ink); }
+.site-nav a[aria-current="page"] { text-decoration: underline; }
+
+main { padding: 0 var(--gutter); }
+
+/* Work: each piece is hung like a wall with its label beside it */
+
+.works {
+  list-style: none;
+  margin: 0;
+  padding: clamp(48px, 10vh, 120px) 0 0;
+}
+
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) 15rem;
+  justify-content: start;
+  gap: 32px;
+  align-items: end;
+  margin: 0 0 clamp(96px, 22vh, 220px);
+}
+
+.work button {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.work img {
+  display: block;
+  max-width: 100%;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+}
+
+.label {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--quiet);
+}
+.label .title { color: var(--ink); font-style: italic; }
+
+/* CV */
+
+.cv {
+  max-width: 46rem;
+  padding: clamp(48px, 10vh, 120px) 0 96px;
+}
+
+.cv section { margin-bottom: 56px; }
+
+.cv h2 {
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.cv ul { margin: 0; padding: 0; list-style: none; }
+
+.cv li {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 16px;
+  padding: 3px 0;
+}
+.cv li.no-year { grid-template-columns: minmax(0, 1fr); }
+
+.cv .year { color: var(--quiet); font-variant-numeric: lining-nums tabular-nums; }
+
+/* Contact */
+
+.contact {
+  padding: clamp(48px, 10vh, 120px) 0 96px;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+.contact p { margin: 0 0 8px; }
+.contact .more { margin-top: 40px; font-size: 1rem; }
+
+/* Footer */
+
+.site-footer {
+  padding: 24px var(--gutter) 40px;
+  font-size: 0.875rem;
+  color: var(--quiet);
+}
+
+/* Lightbox */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  padding: 24px;
+  background: var(--dark);
+  color: #c9ced8;
+}
+.lightbox.open { display: grid; }
+
+.lightbox img {
+  max-width: 100%;
+  max-height: calc(100vh - 110px);
+  width: auto;
+  height: auto;
+}
+
+.lightbox .lb-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding-top: 16px;
+  font-size: 0.95rem;
+}
+.lightbox .lb-caption .title { color: #fff; font-style: italic; }
+
+.lightbox button {
+  padding: 6px 4px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.lightbox button:hover { color: #fff; }
+.lightbox :focus-visible { outline-color: #fff; }
+.lb-controls { display: flex; gap: 20px; flex-shrink: 0; }
+
+body.lb-open { overflow: hidden; }
+
+/* Phones and narrow windows */
+
+@media (max-width: 760px) {
+  .work {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-bottom: 88px;
+  }
+  .work img { max-height: none; }
+  .cv li { grid-template-columns: 3rem minmax(0, 1fr); gap: 12px; }
+  .lightbox { padding: 12px; }
+  .lightbox .lb-bar { flex-direction: column; align-items: flex-start; }
+}
