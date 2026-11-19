@@ -100,6 +100,9 @@ main { padding: 0 var(--gutter); }
   height: auto;
 }
 
+/* A piece shown at half the usual size (e.g. Medium) */
+.work--half img { max-height: 41vh; }
+
 .label {
   margin: 0;
   font-size: 0.95rem;
@@ -209,6 +212,7 @@ body.lb-open { overflow: hidden; }
     margin-bottom: 88px;
   }
   .work img { max-height: none; }
+  .work--half img { width: 50%; }
   .cv li { grid-template-columns: 3rem minmax(0, 1fr); gap: 12px; }
   .lightbox { padding: 12px; }
   .lightbox .lb-bar { flex-direction: column; align-items: flex-start; }
