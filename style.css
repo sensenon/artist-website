@@ -119,8 +119,6 @@ main { padding: 0 var(--gutter); }
 
 .cv h2 {
   margin: 0 0 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--rule);
   font-size: 1.1rem;
   font-weight: 400;
 }
